@@ -1,0 +1,53 @@
+@baseUrl=http://localhost:3000
+@resourceName=imports
+#Categories
+
+# @name getAll
+GET  {{baseUrl}}/{{resourceName}}
+
+###
+
+# @name filterProducts
+GET {{baseUrl}}/{{resourceName}}?color=cyan&price_gte=200
+
+###
+
+# @name pagination
+GET {{baseUrl}}/{{resourceName}}?_page=1&_limit=10
+
+###
+
+# @name sort
+GET {{baseUrl}}/{{resourceName}}?_sort=price&_order=desc
+
+###
+
+# @name addNew
+POST {{baseUrl}}/{{resourceName}}
+Content-Type: application/json
+
+{
+    "categoryId": "65cd30a5-ed81-4fba-b89e-1e7d9a4262d4",
+    "name": "Handmade Steel Fish",
+    "color": "grey",
+    "price": 931,
+    "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+    "thumnailUrl": "https://loremflickr.com/400/400"
+}
+
+###
+
+# @name update
+PATCH {{baseUrl}}/{{resourceName}}/264c2f00-6ca2-4600-b80b-7057ee870506
+Content-Type: application/json
+
+{
+    "name": "Handmade Steel Fish UPDATE",
+    "color": "grey",
+    "price": 999
+}
+
+###
+
+# @name remove
+DELETE {{baseUrl}}/{{resourceName}}/2

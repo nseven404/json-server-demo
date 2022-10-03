@@ -35,12 +35,16 @@ router.render = (req, res) => {
     if(req.method === 'GET' && totalCountHeader){
         const queryParam = queryString.parse(req._parsedUrl.query);
         const result = {
-            data: res.locals.data,
-            pagination: {
-                _page: Number.parseInt(queryParam._page) || 1,
-                _limit: Number.parseInt(queryParam._limit) || 10,
-                _totalRow: Number.parseInt(totalCountHeader)
+            data: {
+              detail: res.locals.data,
+              total_row: Number.parseInt(totalCountHeader)
             },
+            message: 'Thành công',
+            // pagination: {
+            //     _page: Number.parseInt(queryParam._page) || 1,
+            //     _limit: Number.parseInt(queryParam._limit) || 10,
+            //     _totalRow: Number.parseInt(totalCountHeader)
+            // },
             result: 1
         }
         return res.jsonp(result);
@@ -50,7 +54,8 @@ router.render = (req, res) => {
 };
 
 // Use default router
-server.use("/api", router);
+// server.use("/api", router);
+server.use(router);
 server.listen(3000, () => {
   console.log("JSON Server is running");
 });
